@@ -102,23 +102,20 @@ const render = () => {
 
 function gameOver() {
     isGameOver = true;
-    var data = new FormData();
     const urlParams = new URLSearchParams(window.location.search)
     const uid = urlParams.get('uid');
     const mid = urlParams.get('mid');
     const cid = urlParams.get('cid');
-    const imid = urlParams.get('imid');;
-    data.append('uid', uid)
-    data.append('mid', mid)
-    data.append('cid', cid)
-    data.append('imid', imid)
+    const imid = urlParams.get('imid');
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '31.31.198.23:5000/todo/api/v1.0/tasks', true);
-    xhr.onload = function () {
-        // do something to response
-        console.log(this.responseText);
-    };
-    xhr.send(data);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        uid: uid,
+        mid: mid,
+        cid: cid,
+        imid: imid
+    }));
     // if (imid) {
     //     const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${currentScore}`);
     //     fetch(request).then(response => console.log("set score"));
