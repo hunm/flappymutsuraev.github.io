@@ -102,19 +102,30 @@ const render = () => {
 
 function gameOver() {
     isGameOver = true;
-
-    const urlParams = new URLSearchParams(window.location.search);
+    var data = new FormData();
+    const urlParams = new URLSearchParams(window.location.search)
     const uid = urlParams.get('uid');
     const mid = urlParams.get('mid');
     const cid = urlParams.get('cid');
-    const imid = urlParams.get('imid');
-    if (imid) {
-        const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${currentScore}`);
-        fetch(request).then(response => console.log("set score"));
-    } else {
-        const request = new Request(`/setScore?uid=${uid}&mid=${mid}&cid=${cid}&score=${currentScore}`);
-        fetch(request).then(response => console.log("set score"));
-    }
+    const imid = urlParams.get('imid');;
+    data.append('uid', uid)
+    data.append('mid', mid)
+    data.append('cid', cid)
+    data.append('imid', imid)
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '31.31.198.23:5000/todo/api/v1.0/tasks', true);
+    xhr.onload = function () {
+        // do something to response
+        console.log(this.responseText);
+    };
+    xhr.send(data);
+    // if (imid) {
+    //     const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${currentScore}`);
+    //     fetch(request).then(response => console.log("set score"));
+    // } else {
+    //     const request = new Request(`/setScore?uid=${uid}&mid=${mid}&cid=${cid}&score=${currentScore}`);
+    //     fetch(request).then(response => console.log("set score"));
+    // }
 }
 
 // launch setup
