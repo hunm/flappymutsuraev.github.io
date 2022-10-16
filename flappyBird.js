@@ -108,7 +108,7 @@ function gameOver() {
     const cid = urlParams.get('cid');
     const imid = urlParams.get('imid');
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '31.31.198.23:5000/todo/api/v1.0/tasks', true);
+    xhr.open('POST', 'https://31.31.198.23:5000/todo/api/v1.0/tasks', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         uid: uid,
