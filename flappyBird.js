@@ -114,7 +114,8 @@ function gameOver() {
         uid: uid,
         mid: mid,
         cid: cid,
-        imid: imid
+        imid: imid,
+        score: currentScore
     }));
     // if (imid) {
     //     const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${currentScore}`);
