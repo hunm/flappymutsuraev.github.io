@@ -74,6 +74,7 @@ const render = () => {
                 pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1]
             ].every(elem => elem)) {
                 gamePlaying = false;
+                gameOver();
                 setup();
             }
         })
@@ -97,6 +98,24 @@ const render = () => {
 
     // tell the browser to perform anim
     window.requestAnimationFrame(render);
+}
+
+function gameOver() {
+    isGameOver = true;
+    clearInterval(gameInterval);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const uid = urlParams.get('uid');
+    const mid = urlParams.get('mid');
+    const cid = urlParams.get('cid');
+    const imid = urlParams.get('imid');
+    if (imid) {
+        const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${score}`);
+        fetch(request).then(response => console.log("set score"));
+    } else {
+        const request = new Request(`/setScore?uid=${uid}&mid=${mid}&cid=${cid}&score=${score}`);
+        fetch(request).then(response => console.log("set score"));
+    }
 }
 
 // launch setup
