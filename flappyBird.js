@@ -110,10 +110,10 @@ function gameOver() {
     const cid = urlParams.get('cid');
     const imid = urlParams.get('imid');
     if (imid) {
-        const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${score}`);
+        const request = new Request(`/setScore?uid=${uid}&imid=${imid}&score=${currentScore}`);
         fetch(request).then(response => console.log("set score"));
     } else {
-        const request = new Request(`/setScore?uid=${uid}&mid=${mid}&cid=${cid}&score=${score}`);
+        const request = new Request(`/setScore?uid=${uid}&mid=${mid}&cid=${cid}&score=${currentScore}`);
         fetch(request).then(response => console.log("set score"));
     }
 }
