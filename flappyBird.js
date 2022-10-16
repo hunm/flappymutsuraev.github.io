@@ -102,7 +102,6 @@ const render = () => {
 
 function gameOver() {
     isGameOver = true;
-    clearInterval(gameInterval);
 
     const urlParams = new URLSearchParams(window.location.search);
     const uid = urlParams.get('uid');
